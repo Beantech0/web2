@@ -10,6 +10,7 @@ class Szallitas_Controller
 		$szallitasModel = new Szallitas_Model;
 		$uzenet = $szallitasModel->get_idopont($vars);
 		$view = new View_Loader($this->ctrlName."_main");
+		$view->assign('uzenet', $uzenet);
 	}
 }
 

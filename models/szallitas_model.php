@@ -4,8 +4,14 @@ class Szallitas_Model
 {	
 	public function get_idopont($vars)
 	{
-
-	    $client = new SoapClient('http://localhost/web2/soap/szerver/hulladekszallitas.wsdl');
+        $options = array(
+   
+            'keep_alive' => false,
+             //'trace' =>true,
+             //'connection_timeout' => 5000,
+             //'cache_wsdl' => WSDL_CACHE_NONE,
+            );
+	    $client = new SoapClient('http://localhost/web2/soap/szerver/hulladekszallitas.wsdl', $options);
         $szolgaltatas = $client->getszolgaltatas();
         $_SESSION['szolgaltatas'] = $szolgaltatas;
   
