@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap-env="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://localhost/web2-web/soap/szerver/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://localhost/web2/soap/szerver/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://localhost/web/soap/szerver/">
+      <xsd:complexType name="Szolgaltatas">
+        <xsd:all>
+          <xsd:element name="hibakod" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="uzenet" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="szolgaltatas" type="tns:SzolgaltatasArray" minOccurs="0" maxOccurs="1"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Lakig">
+        <xsd:all>
+          <xsd:element name="hibakod" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="uzenet" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="id" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="jelentes" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="lakig" type="tns:LakigArray" minOccurs="0" maxOccurs="1"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Naptar">
+        <xsd:all>
+          <xsd:element name="hibakod" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="uzenet" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="id" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="igeny" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="naptar" type="tns:NaptarArray" minOccurs="0" maxOccurs="1"/>
+        </xsd:all>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getszolgaltatasRequest"/>
+  <wsdl:message name="getszolgaltatasResponse">
+    <wsdl:part name="getszolgaltatasReturn" type="tns:Szolgaltatas"/>
+  </wsdl:message>
+  <wsdl:message name="getlakigRequest">
+    <wsdl:part name="id" type="xsd:int"/>
+  </wsdl:message>
+  <wsdl:message name="getlakigResponse">
+    <wsdl:part name="getlakigReturn" type="tns:Lakig"/>
+  </wsdl:message>
+  <wsdl:message name="getnaptarRequest">
+    <wsdl:part name="igeny" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getnaptarResponse">
+    <wsdl:part name="getnaptarReturn" type="tns:Naptar"/>
+  </wsdl:message>
+  <wsdl:portType name="HulladekszallitasPortType">
+    <wsdl:operation name="getszolgaltatas">
+      <wsdl:documentation/>
+      <wsdl:input message="tns:getszolgaltatasRequest"/>
+      <wsdl:output message="tns:getszolgaltatasResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getlakig">
+      <wsdl:documentation/>
+      <wsdl:input message="tns:getlakigRequest"/>
+      <wsdl:output message="tns:getlakigResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getnaptar">
+      <wsdl:documentation/>
+      <wsdl:input message="tns:getnaptarRequest"/>
+      <wsdl:output message="tns:getnaptarResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HulladekszallitasBinding" type="tns:HulladekszallitasPortType">
+    <soap-env:binding xmlns="http://schemas.xmlsoap.org/wsdl/soap/" style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getszolgaltatas">
+      <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/web2/soap/szerver/szerver.php?method=getszolgaltatas" style="rpc"/>
+      <wsdl:input>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getlakig">
+      <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/web2/soap/szerver/szerver.php?method=getlakig" style="rpc"/>
+      <wsdl:input>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getnaptar">
+      <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/web2/soap/szerver/szerver.php?method=getnaptar" style="rpc"/>
+      <wsdl:input>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Hulladekszallitas">
+    <wsdl:documentation/>
+    <wsdl:port name="HulladekszallitasPort" binding="tns:HulladekszallitasBinding">
+      <soap-env:address location="http://localhost/web2/soap/szerver/szerver.php"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
