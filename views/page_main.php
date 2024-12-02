@@ -29,7 +29,7 @@
         <div class="row">
             <!-- Oldalsáv -->
             <aside class="col-md-3 bg-light p-3 rounded">
-                    <img src="./img/image.png" id="auto" width="auto" height="200px">
+                    <img src="http://localhost/web2/img/image.png" id="auto" width="auto" height="200px">
             </aside>
 
             <!-- Fő tartalom -->

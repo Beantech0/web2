@@ -1,24 +1,39 @@
-
+<?php
+$client = new SoapClient('http://localhost/web2/soap/szerver/hulladekszallitas.wsdl');
+?>
     <div class="balold" id="balold">
 			<div class="valaszt">
         <form name="szolgvalaszt" action="<?= SITE_ROOT ?>szallitas" method="POST">
           <h4>Hulladékelszállítási Időpontok</h4>
           <select name="szolgaltatas" class="form-control" onchange="javascript:szolgvalaszt.submit();">
-            <option class="form-control" value="">Válassza ki a hulladék típusát...</option>
+            <option value="">Válassza ki a hulladék típusát...</option>
             <?php
-              foreach($_SESSION['szolgaltatas']->szolgaltatas as $szolg)
+              
+              $szolgaltatas = $client->getszolgaltatas();
+              foreach ($szolgaltatas['szolgaltatas'] as $szolgaltatas)
               {
-                echo '<option value="'.$szolg['id'].'">'.$szolg['jelentes'].'</option>';
+                echo '<option value="' . $szolgaltatas['id'] . '">' . $szolgaltatas['jelentes'] . '</option>';
               }
             ?>
-          </select><br><br>
+          </select><br>
+          <?php
+          if(isset($_POST['szolgaltatas'])) {
+           echo "Kiválasztott hulladék típus:" .$_POST['szolgaltatas'];
+          }
+          if(isset($_POST['szolgaltatas'])) {
+            print"lefut";
+            $lakig = $client->getlakig($_POST['szolgaltatas']);
+            print_r($lakig);
+         }
+          ?>
+          <br><br>
         </form>
         <h4>Legközelebbi Szállítási Időpontok</h4>
         <form name="lakigvalaszt" action="<?= SITE_ROOT ?>szallitas" method="POST">
           <select class="form-control" name="lakig" onchange="javascript:lakigvalaszt.submit();">
             <option class="form-control" value="">Mikor szeretné elszállíttatni...</option>
             <?php
-              foreach($_SESSION['lakig']->lakig as $lak)
+              foreach ($lakig['igeny'] as $lak)
               {
                 echo '<option>'.$lak['igeny'].'</option>';
               }
