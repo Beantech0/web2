@@ -52,7 +52,7 @@
 <?php
 
 
-$url = "http://localhost/web2/szerver/restfulszerver.php";
+$url = "http://holybaattila.nhely.hu/szerver/restfulszerver.php";
 
 if(isset($_POST['hozzaadgomb']))
 {

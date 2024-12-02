@@ -14,7 +14,7 @@
     //'connection_timeout' => 5000,
     //'cache_wsdl' => WSDL_CACHE_NONE,
     );
-  $client = new SoapClient('http://localhost/web2/soap/szerver/hulladekszallitas.wsdl',$options);
+  $client = new SoapClient('http://holybaattila.nhely.hu/soap/szerver/hulladekszallitas.wsdl',$options);
   
   $szolgaltatas = $client->getszolgaltatas();
   echo "<pre>";

@@ -1,10 +1,9 @@
 <?php
-$client = new SoapClient('http://localhost/web2/soap/szerver/hulladekszallitas.wsdl');
+$client = new SoapClient('http://holybaattila.nhely.hu/soap/szerver/hulladekszallitas.wsdl');
 ?>
     <div class="balold" id="balold">
 			<div class="valaszt">
         <form name="szolgvalaszt" action="<?= SITE_ROOT ?>szallitas" method="POST">
-          <h4>Hulladékelszállítási Időpontok</h4>
           <select name="szolgaltatas" class="form-control" onchange="javascript:szolgvalaszt.submit();">
             <option value="">Válassza ki a hulladék típusát...</option>
             <?php
@@ -28,7 +27,6 @@ $client = new SoapClient('http://localhost/web2/soap/szerver/hulladekszallitas.w
           ?>
           <br><br>
         </form>
-        <h4>Legközelebbi Szállítási Időpontok</h4>
         <form name="lakigvalaszt" action="<?= SITE_ROOT ?>szallitas" method="POST">
           <select class="form-control" name="lakig" onchange="javascript:lakigvalaszt.submit();">
             <option class="form-control" value="">Mikor szeretné elszállíttatni...</option>
